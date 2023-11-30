@@ -1,3 +1,4 @@
+javascript;
 import wx
 import win32api
 import win32con #for the VK keycodes
