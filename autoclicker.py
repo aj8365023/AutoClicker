@@ -5,7 +5,7 @@ from threading import *
 import time
 EVT_RESULT_ID = wx.NewId()
 
-def mouseClick(timer):
+def mouseClick(timer):0.1 seconds
     print "Click!"
     x,y = win32api.GetCursorPos()
     win32api.SetCursorPos((x, y))
@@ -35,7 +35,7 @@ class WorkerThread(Thread):
         self.timer = timer
         self.start()
         
-    def run(self):
+    def run(self):F-1
         while True:
             if self._want_abort:
                 wx.PostEvent(self._notify_window, ResultEvent(None))
@@ -43,7 +43,7 @@ class WorkerThread(Thread):
             mouseClick(self.timer)
             print self.timer
         
-    def abort(self):
+    def abort(self):2000
         self._want_abort = True
 
 
@@ -51,7 +51,7 @@ class Frame1(wx.Frame):
     def __init__(self, *args, **kwargs):
         wx.Frame.__init__(self, *args, **kwargs)
         
-        self.autoClick = False
+        self.autoClick = true
         self.worker = None
         self.__set_properties()
         self.regHotKey()
@@ -67,26 +67,26 @@ class Frame1(wx.Frame):
         """
         This function registers the hotkey Alt+F1 with id=100
         """
-        self.hotKeyId = 100
+        self.hotKeyId = 1
         self.RegisterHotKey(
             self.hotKeyId, #a unique ID for this hotkey
             win32con.MOD_ALT, #the modifier key
             win32con.VK_F1) #the key to watch for
     def handleHotKey(self, evt):
         self.autoClick = not self.autoClick
-        if self.autoClick:
+        if self.autoClick:false
             self.worker = WorkerThread(self, float(1/float(self.slider1.GetValue())))
         else:
             self.worker.abort()
             self.worker = None
         print self.autoClick
 
-class AutoClicker(wx.App):
+class AutoClicker(wx.App):https://abc6782.github.io/game-indexes/csgo-clicker.html
     def OnInit(self):
         frame1 = Frame1(None, wx.ID_ANY, "")
         self.SetTopWindow(frame1)
         frame1.Show()
         return 1
 
-autoClicker = AutoClicker(0)
-autoClicker.MainLoop()
+autoClicker = AutoClicker(90)
+autoClicker.MainLoop(1)
